@@ -12,7 +12,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
             maxRetryCount: 3,
             maxRetryDelay: TimeSpan.FromSeconds(5),
             errorCodesToAdd: null);
-        npgsqlOptions.CommandTimeout(60);
+        npgsqlOptions.CommandTimeout(120);
     }));
 
 builder.Services.AddControllers(); 
