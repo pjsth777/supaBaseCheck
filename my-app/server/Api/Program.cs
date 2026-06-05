@@ -21,9 +21,13 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: MyAllowSpecificOrigins,
         policy =>
         {
-            policy.WithOrigins("http://localhost:5173", "https://supa-base-check.vercel.app/")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+            policy.WithOrigins(
+                    "http://localhost:5173",
+                    "https://supa-base-check.vercel.app", 
+                    "https://supa-base-check.vercel.app/"
+                  )
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
         });
 });
 
@@ -38,8 +42,8 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
 app.UseCors(MyAllowSpecificOrigins);
+//app.UseHttpsRedirection();
 app.MapControllers();
 
 app.Run();
